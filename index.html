@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>StudyTRACK</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f3ead8;
+            color: #17233c;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        /* ================= MENU ================= */
+        
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 20px;
+            background-color: #101b35;
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+        }
+        
+        ul li a {
+            color: #f3ead8;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: bold;
+        }
+        
+        ul li a:hover {
+            color: #d8b979;
+        }
+        /* ================= TITRE PRINCIPAL ================= */
+        
+        h1 {
+            color: #f3ead8;
+            border: 3px solid #101b35;
+            border-radius: 20px;
+            padding: 40px 80px;
+            display: block;
+            background-color: #101b35;
+            margin: 20px auto;
+            width: fit-content;
+            font-size: 50px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            box-shadow: 0 5px 12px rgba(16, 27, 53, 0.20);
+        }
+        /* ================= PHRASE ================= */
+        
+        h1+p {
+            text-align: center;
+            font-size: 22px;
+            color: #101b35;
+            margin-top: 30px;
+        }
+        /* ================= DESCRIPTION ================= */
+        
+        h1+p+p {
+            max-width: 700px;
+            margin: 15px auto 50px;
+            line-height: 1.6;
+            color: #3d4658;
+            font-size: 17px;
+        }
+        /* ================= LES 3 BLOCS ================= */
+        
+        .features {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+        }
+        
+        .feature {
+            flex: 1;
+            max-width: 300px;
+        }
+        /* ================= TITRES DES BLOCS ================= */
+        
+        .feature h2 {
+            margin: 0 0 15px 0;
+            padding: 20px 10px;
+            background-color: #101b35;
+            color: #f3ead8;
+            border-radius: 15px;
+            font-size: 22px;
+            font-weight: bold;
+            box-shadow: 0 5px 12px rgba(16, 27, 53, 0.20);
+        }
+        /* ================= TEXTES ================= */
+        
+        .feature p {
+            margin: 0;
+            padding: 0 10px;
+            color: #3d4658;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        /* ================= GET STARTED ================= */
+        
+        .get-started {
+            display: inline-block;
+            margin: 20px auto 50px;
+            padding: 18px 50px;
+            background-color: #f8dea5;
+            color: #101b35;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border: 3px solid #a87d28;
+            box-shadow: 0 6px 15px rgba(16, 27, 53, 0.25);
+            transition: 0.3s;
+        }
+        
+        .get-started:hover {
+            background-color: #a77655;
+            color: #101b35;
+            transform: translateY(-3px);
+            box-shadow: 0 9px 20px rgba(16, 27, 53, 0.35);
+        }
+        /* ================= TELEPHONE ================= */
+        
+        @media (max-width: 700px) {
+            ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+            .feature {
+                width: 80%;
+                max-width: 400px;
+            }
+            h1 {
+                font-size: 40px;
+                padding: 30px 40px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ================= MENU ================= -->
+
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Subjects.html">Subjects</a></li>
+        <li><a href="tasks.html">Tasks</a></li>
+        <li><a href="progress.html">Progress</a></li>
+        <li><a href="about.html">About</a></li>
+    </ul>
+
+
+    <!-- ================= TITRE ================= -->
+
+    <h1>
+        StudyTRACK
+    </h1>
+
+
+    <!-- ================= PHRASE ================= -->
+
+    <p>
+        <b>Organize your STUDIES. TRACK your progress</b>
+    </p>
+
+
+    <!-- ================= DESCRIPTION ================= -->
+
+    <p>
+        StudyTRACK is a simple platform that helps students organize their study tasks, manage their subjects and track their progress.
+    </p>
+
+
+    <!-- ================= LES 3 BLOCS ================= -->
+
+    <div class="features">
+
+        <div class="feature">
+            <h2>Manage Subjects</h2>
+            <p>Organize your subjects in one place.</p>
+        </div>
+
+
+        <div class="feature">
+            <h2>Manage Tasks</h2>
+            <p>Create and track your study tasks.</p>
+        </div>
+
+
+        <div class="feature">
+            <h2>Track Progress</h2>
+            <p>Monitor your learning progress.</p>
+        </div>
+
+    </div>
+
+
+    <!-- ================= BOUTON ================= -->
+
+    <a href="Subjects.html" class="get-started">
+        Get Started
+    </a>
+
+
+</body>
+
+</html>

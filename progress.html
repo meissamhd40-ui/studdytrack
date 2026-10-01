@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Progress</title>
+
+
+    <style>
+
+
+        /* ================= GENERAL ================= */
+
+        body {
+
+            margin: 0;
+            padding: 0;
+
+            background-color: #f3ead8;
+
+            color: #17233c;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            text-align: center;
+
+        }
+
+
+        /* ================= MENU ================= */
+
+        ul {
+
+            list-style: none;
+
+            margin: 0;
+            padding: 20px;
+
+            background-color: #101b35;
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 35px;
+
+        }
+
+
+        ul li a {
+
+            color: #f3ead8;
+
+            text-decoration: none;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+        }
+
+
+        ul li a:hover {
+
+            color: #d8b979;
+
+        }
+
+
+        /* ================= TITRE PRINCIPAL ================= */
+
+        h1 {
+
+            color: #f3ead8;
+
+            border: 3px solid #101b35;
+
+            border-radius: 20px;
+
+            padding: 30px 60px;
+
+            display: block;
+
+            background-color: #101b35;
+
+            margin: 20px auto;
+
+            width: fit-content;
+
+            font-size: 45px;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            text-align: center;
+
+            box-shadow: 0 5px 12px rgba(16, 27, 53, 0.20);
+
+        }
+
+
+        /* ================= DESCRIPTION ================= */
+
+        h1 + p {
+
+            text-align: center;
+
+            font-size: 20px;
+
+            color: #101b35;
+
+            margin-top: 25px;
+
+            margin-bottom: 35px;
+
+        }
+
+
+        /* ================= OVERALL PROGRESS ================= */
+
+        .overall-progress {
+
+            width: 80%;
+
+            max-width: 900px;
+
+            margin: 0 auto 40px;
+
+            padding: 30px;
+
+            background-color: white;
+
+            border: 3px solid #101b35;
+
+            border-radius: 20px;
+
+            box-shadow: 0 5px 12px rgba(16, 27, 53, 0.20);
+
+            box-sizing: border-box;
+
+        }
+
+
+        /* ================= OVERALL TITLE ================= */
+
+        .overall-progress h2 {
+
+            margin: 0 0 25px 0;
+
+            padding: 15px;
+
+            background-color: #101b35;
+
+            color: #f3ead8;
+
+            border-radius: 15px;
+
+            font-size: 25px;
+
+        }
+
+
+        /* ================= OVERALL INFORMATION ================= */
+
+        .overall-info {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 25px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .overall-item {
+
+            width: 150px;
+
+            padding: 15px;
+
+            background-color: #f8dea5;
+
+            border-radius: 15px;
+
+            border: 2px solid #a87d28;
+
+            box-sizing: border-box;
+
+        }
+
+
+        .overall-item p {
+
+            margin: 5px 0;
+
+            color: #3d4658;
+
+            font-size: 15px;
+
+        }
+
+
+        .overall-item strong {
+
+            display: block;
+
+            margin-top: 5px;
+
+            color: #101b35;
+
+            font-size: 24px;
+
+        }
+
+
+        /* ================= OVERALL PROGRESS BAR ================= */
+
+        .progress-bar {
+
+            width: 80%;
+
+            height: 25px;
+
+            margin: 25px auto 10px;
+
+            background-color: #e1d5bd;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+        }
+
+
+        .progress-value {
+
+            height: 100%;
+
+            width: 0%;
+
+            background-color: #101b35;
+
+            border-radius: 20px;
+
+        }
+
+
+        .progress-percent {
+
+            color: #101b35;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            margin-top: 10px;
+
+        }
+
+
+        /* ================= SUBJECT CARDS ================= */
+
+        .progress-subjects {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: flex-start;
+
+            gap: 25px;
+
+            flex-wrap: wrap;
+
+            max-width: 1100px;
+
+            margin: 0 auto 50px;
+
+            padding: 0 20px;
+
+        }
+
+
+        /* ================= SUBJECT CARD ================= */
+
+        .progress-card {
+
+            width: 220px;
+
+            min-height: 260px;
+
+            padding: 25px 20px;
+
+            background-color: white;
+
+            border: 3px solid #101b35;
+
+            border-radius: 20px;
+
+            box-shadow: 0 5px 12px rgba(16, 27, 53, 0.20);
+
+            box-sizing: border-box;
+
+        }
+
+
+        /* ================= SUBJECT TITLE ================= */
+
+        .progress-card h2 {
+
+            margin: 0 0 20px 0;
+
+            padding: 15px 10px;
+
+            background-color: #101b35;
+
+            color: #f3ead8;
+
+            border-radius: 15px;
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+        }
+
+
+        /* ================= SUBJECT INFORMATION ================= */
+
+        .progress-card p {
+
+            margin: 12px 0;
+
+            color: #3d4658;
+
+            font-size: 16px;
+
+        }
+
+
+        /* ================= SUBJECT PROGRESS BAR ================= */
+
+        .subject-bar {
+
+            width: 100%;
+
+            height: 18px;
+
+            margin: 20px auto 10px;
+
+            background-color: #e1d5bd;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+        }
+
+
+        .subject-value {
+
+            height: 100%;
+
+            background-color: #101b35;
+
+            border-radius: 20px;
+
+        }
+
+
+        /* ================= PROGRESS VALUES ================= */
+
+        .subject-percent {
+
+            color: #101b35;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            margin-top: 10px;
+
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 700px) {
+
+            ul {
+
+                flex-direction: column;
+
+                gap: 15px;
+
+            }
+
+
+            .overall-progress {
+
+                width: 85%;
+
+                padding: 20px;
+
+            }
+
+
+            .overall-info {
+
+                flex-direction: column;
+
+                align-items: center;
+
+            }
+
+
+            .overall-item {
+
+                width: 80%;
+
+                max-width: 250px;
+
+            }
+
+
+            .progress-subjects {
+
+                flex-direction: column;
+
+                align-items: center;
+
+            }
+
+
+            .progress-card {
+
+                width: 80%;
+
+                max-width: 350px;
+
+            }
+
+
+            h1 {
+
+                font-size: 40px;
+
+                padding: 30px 40px;
+
+            }
+
+        }
+
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= MENU ================= -->
+
+    <ul>
+
+        <li>
+            <a href="index.html">Home</a>
+        </li>
+
+        <li>
+            <a href="Subjects.html">Subjects</a>
+        </li>
+
+        <li>
+            <a href="tasks.html">Tasks</a>
+        </li>
+
+        <li>
+            <a href="progress.html">Progress</a>
+        </li>
+
+        <li>
+            <a href="about.html">About</a>
+        </li>
+
+    </ul>
+
+
+    <!-- ================= TITRE ================= -->
+
+    <h1>
+        My Progress
+    </h1>
+
+
+    <!-- ================= DESCRIPTION ================= -->
+
+    <p>
+        Track your study progress and completed tasks.
+    </p>
+
+
+    <!-- ================= OVERALL PROGRESS ================= -->
+
+    <section class="overall-progress">
+
+        <h2>
+            Overall Progress
+        </h2>
+
+
+        <div class="overall-info">
+
+
+            <!-- TOTAL TASKS -->
+
+            <div class="overall-item">
+
+                <p>
+                    Total Tasks
+                </p>
+
+                <strong id="totalTasks">
+                    0
+                </strong>
+
+            </div>
+
+
+            <!-- COMPLETED -->
+
+            <div class="overall-item">
+
+                <p>
+                    Completed
+                </p>
+
+                <strong id="completedTasks">
+                    0
+                </strong>
+
+            </div>
+
+
+            <!-- REMAINING -->
+
+            <div class="overall-item">
+
+                <p>
+                    Remaining
+                </p>
+
+                <strong id="remainingTasks">
+                    0
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- PROGRESS BAR -->
+
+        <div class="progress-bar">
+
+            <div
+                class="progress-value"
+                id="overallProgressBar">
+            </div>
+
+        </div>
+
+
+        <p
+            class="progress-percent"
+            id="overallProgressText">
+
+            Progress: 0%
+
+        </p>
+
+
+    </section>
+
+
+    <!-- ================= SUBJECT PROGRESS ================= -->
+
+    <div
+        class="progress-subjects"
+        id="progressSubjects">
+
+        <!-- Les cartes seront créées par JavaScript -->
+
+    </div>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+
+        /* ==================================================
+           1. RÉCUPÉRER LES DONNÉES
+           ================================================== */
+
+
+        let subjects =
+            JSON.parse(localStorage.getItem("subjects"));
+
+
+        /* ==================================================
+           2. SI AUCUNE DONNÉE N'EXISTE
+           ================================================== */
+
+
+        if (subjects === null) {
+
+            subjects = [];
+
+        }
+
+
+        /* ==================================================
+           3. RÉCUPÉRER LES ÉLÉMENTS HTML
+           ================================================== */
+
+
+        const totalTasksElement =
+            document.getElementById("totalTasks");
+
+
+        const completedTasksElement =
+            document.getElementById("completedTasks");
+
+
+        const remainingTasksElement =
+            document.getElementById("remainingTasks");
+
+
+        const overallProgressBar =
+            document.getElementById("overallProgressBar");
+
+
+        const overallProgressText =
+            document.getElementById("overallProgressText");
+
+
+        const progressSubjects =
+            document.getElementById("progressSubjects");
+
+
+        /* ==================================================
+           4. AFFICHER LA PROGRESSION
+           ================================================== */
+
+
+        function displayProgress() {
+
+
+            /* ==============================================
+               VARIABLES POUR LES STATISTIQUES GLOBALES
+               ============================================== */
+
+
+            let totalTasks = 0;
+
+            let completedTasks = 0;
+
+
+            /* ==============================================
+               VIDER LES ANCIENNES CARTES
+               ============================================== */
+
+
+            progressSubjects.innerHTML = "";
+
+
+            /* ==============================================
+               PARCOURIR LES MATIÈRES
+               ============================================== */
+
+
+            subjects.forEach(function(subject) {
+
+
+                /* ================= NOMBRE DE TÂCHES ================= */
+
+                const subjectTotal =
+                    subject.tasks.length;
+
+
+                /* ================= NOMBRE DE TÂCHES TERMINÉES ================= */
+
+                let subjectCompleted = 0;
+
+
+                subject.tasks.forEach(function(task) {
+
+                    if (task.completed === true) {
+
+                        subjectCompleted++;
+
+                    }
+
+                });
+
+
+                /* ================= PROGRESSION ================= */
+
+
+                let subjectProgress = 0;
+
+
+                if (subjectTotal > 0) {
+
+                    subjectProgress =
+                        Math.round(
+                            (subjectCompleted / subjectTotal) * 100
+                        );
+
+                }
+
+
+                /* ==============================================
+                   AJOUTER AUX STATISTIQUES GLOBALES
+                   ============================================== */
+
+
+                totalTasks =
+                    totalTasks + subjectTotal;
+
+
+                completedTasks =
+                    completedTasks + subjectCompleted;
+
+
+                /* ==============================================
+                   CRÉER LA CARTE
+                   ============================================== */
+
+
+                const card =
+                    document.createElement("section");
+
+                card.className =
+                    "progress-card";
+
+
+                /* ================= TITRE ================= */
+
+                const title =
+                    document.createElement("h2");
+
+                title.textContent =
+                    subject.name;
+
+
+                /* ================= TASKS ================= */
+
+                const tasksText =
+                    document.createElement("p");
+
+                tasksText.textContent =
+                    "Tasks: " + subjectTotal;
+
+
+                /* ================= COMPLETED ================= */
+
+                const completedText =
+                    document.createElement("p");
+
+                completedText.textContent =
+                    "Completed: " + subjectCompleted;
+
+
+                /* ================= BARRE ================= */
+
+                const bar =
+                    document.createElement("div");
+
+                bar.className =
+                    "subject-bar";
+
+
+                const value =
+                    document.createElement("div");
+
+                value.className =
+                    "subject-value";
+
+
+                /*
+                La largeur de la barre
+                dépend du pourcentage.
+                */
+
+                value.style.width =
+                    subjectProgress + "%";
+
+
+                bar.appendChild(value);
+
+
+                /* ================= POURCENTAGE ================= */
+
+                const percent =
+                    document.createElement("p");
+
+                percent.className =
+                    "subject-percent";
+
+                percent.textContent =
+                    "Progress: "
+                    + subjectProgress
+                    + "%";
+
+
+                /* ==============================================
+                   AJOUTER LES ÉLÉMENTS À LA CARTE
+                   ============================================== */
+
+
+                card.appendChild(title);
+
+                card.appendChild(tasksText);
+
+                card.appendChild(completedText);
+
+                card.appendChild(bar);
+
+                card.appendChild(percent);
+
+
+                /* ==============================================
+                   AJOUTER LA CARTE À LA PAGE
+                   ============================================== */
+
+
+                progressSubjects.appendChild(card);
+
+            });
+
+
+            /* ==================================================
+               5. CALCULER LES STATISTIQUES GLOBALES
+               ================================================== */
+
+
+            const remainingTasks =
+                totalTasks - completedTasks;
+
+
+            let overallProgress = 0;
+
+
+            if (totalTasks > 0) {
+
+                overallProgress =
+                    Math.round(
+                        (completedTasks / totalTasks) * 100
+                    );
+
+            }
+
+
+            /* ==================================================
+               6. AFFICHER LES STATISTIQUES
+               ================================================== */
+
+
+            totalTasksElement.textContent =
+                totalTasks;
+
+
+            completedTasksElement.textContent =
+                completedTasks;
+
+
+            remainingTasksElement.textContent =
+                remainingTasks;
+
+
+            overallProgressBar.style.width =
+                overallProgress + "%";
+
+
+            overallProgressText.textContent =
+                "Progress: "
+                + overallProgress
+                + "%";
+
+        }
+
+
+        /* ==================================================
+           7. AFFICHER AU CHARGEMENT DE LA PAGE
+           ================================================== */
+
+
+        displayProgress();
+
+
+    </script>
+
+
+</body>
+
+</html>

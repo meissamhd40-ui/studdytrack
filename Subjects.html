@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Subjects</title>
+    <style>
+        /* ================= GENERAL ================= */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f3ead8;
+            color: #17233c;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        /* ================= MENU ================= */
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 20px;
+            background-color: #101b35;
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+        }
+        ul li a {
+            color: #f3ead8;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: bold;
+        }
+        ul li a:hover {
+            color: #d8b979;
+        }
+        /* ================= TITRE PRINCIPAL ================= */
+        h1 {
+            color: #f3ead8;
+            border: 3px solid #101b35;
+            border-radius: 20px;
+            padding: 30px 60px;
+            display: block;
+            background-color: #101b35;
+            margin: 20px auto;
+            width: fit-content;
+            font-size: 45px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            box-shadow: 0 5px 12px rgba(16, 27, 53, 0.20);
+        }
+        /* ================= PHRASE ================= */
+        h1 + p {
+            text-align: center;
+            font-size: 20px;
+            color: #101b35;
+            margin-top: 25px;
+            margin-bottom: 35px;
+        }
+        /* ================= SUBJECTS ================= */
+        .subjects {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 25px;
+            flex-wrap: wrap;
+            max-width: 1100px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+        }
+        /* ================= SUBJECT CARDS ================= */
+        .subject-card {
+            width: 220px;
+            min-height: 260px;
+            padding: 25px 20px;
+            background-color: white;
+            border: 3px solid #101b35;
+            border-radius: 20px;
+            box-shadow: 0 5px 12px rgba(16, 27, 53, 0.20);
+            box-sizing: border-box;
+        }
+        /* ================= SUBJECT TITLE ================= */
+        .subject-card h2 {
+            margin: 0 0 20px 0;
+            padding: 15px 10px;
+            background-color: #101b35;
+            color: #f3ead8;
+            border-radius: 15px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        /* ================= SUBJECT INFORMATION ================= */
+        .subject-card p {
+            margin: 12px 0;
+            color: #3d4658;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+        /* ================= VIEW TASKS BUTTON ================= */
+        .view-tasks {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #f8dea5;
+            color: #101b35;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: bold;
+            border: 2px solid #a87d28;
+            transition: 0.3s;
+        }
+        .view-tasks:hover {
+            background-color: #a77655;
+            color: #101b35;
+            transform: translateY(-2px);
+        }
+        /* ================= DELETE BUTTON ================= */
+        .delete-subject {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: white;
+            color: #a87d28;
+            border: 2px solid #a87d28;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .delete-subject:hover {
+            background-color: #a87d28;
+            color: white;
+            transform: translateY(-2px);
+        }
+        /* ================= ADD SUBJECT CARD ================= */
+        .add-subject {
+            background-color: #fffaf0;
+            border: 3px dashed #a87d28;
+        }
+        .add-subject h2 {
+            background-color: #101b35;
+            color: #f3ead8;
+        }
+        /* ================= FORM ================= */
+        .add-subject label {
+            display: block;
+            margin-bottom: 10px;
+            color: #3d4658;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .add-subject input {
+            width: 90%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 2px solid #a87d28;
+            border-radius: 10px;
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+        .add-subject input:focus {
+            outline: none;
+            border-color: #101b35;
+        }
+        /* ================= ADD BUTTON ================= */
+        .add-button {
+            padding: 10px 20px;
+            background-color: #f8dea5;
+            color: #101b35;
+            border: 2px solid #a87d28;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .add-button:hover {
+            background-color: #a77655;
+            color: #101b35;
+            transform: translateY(-2px);
+        }
+        /* ================= MOBILE ================= */
+        @media (max-width: 700px) {
+            ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .subjects {
+                flex-direction: column;
+                align-items: center;
+            }
+            .subject-card {
+                width: 80%;
+                max-width: 350px;
+            }
+            h1 {
+                font-size: 40px;
+                padding: 30px 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ================= MENU ================= -->
+    <ul>
+        <li>
+            <a href="index.html">Home</a>
+        </li>
+        <li>
+            <a href="Subjects.html">Subjects</a>
+        </li>
+        <li>
+            <a href="tasks.html">Tasks</a>
+        </li>
+        <li>
+            <a href="progress.html">Progress</a>
+        </li>
+        <li>
+            <a href="about.html">About</a>
+        </li>
+    </ul>
+    <!-- ================= TITRE ================= -->
+    <h1>
+        My Subjects
+    </h1>
+    <!-- ================= DESCRIPTION ================= -->
+    <p>
+        Choose a subject to see its progress and tasks.
+    </p>
+    <!-- ================= SUBJECTS ================= -->
+    <div class="subjects" id="subjectsContainer">
+        <!-- ================= ADD SUBJECT ================= -->
+        <div class="subject-card add-subject">
+            <h2>
+                Add a Subject
+            </h2>
+            <form id="subjectForm">
+                <label for="subject">
+                    Subject name:
+                </label>
+                <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    placeholder="Enter a subject"
+                >
+                <button
+                    type="submit"
+                    class="add-button"
+                >
+                    Add Subject
+                </button>
+            </form>
+        </div>
+    </div>
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
+        /* ==================================================
+           1. CHARGER LES MATIÈRES DEPUIS LOCALSTORAGE
+           ================================================== */
+        let subjects = [];
+        const savedSubjects =
+            localStorage.getItem("subjects");
+        if (savedSubjects !== null) {
+            try {
+                const parsedSubjects =
+                    JSON.parse(savedSubjects);
+                if (Array.isArray(parsedSubjects)) {
+                    subjects = parsedSubjects;
+                }
+            } catch (error) {
+                console.log(
+                    "Error reading saved subjects.",
+                    error
+                );
+                subjects = [];
+            }
+        }
+        /* ==================================================
+           2. DONNÉES PAR DÉFAUT
+           
+           Utilisées uniquement si aucune donnée n'existe.
+           ================================================== */
+        if (subjects.length === 0) {
+            subjects = [
+                {
+                    name: "German",
+                    tasks: []
+                },
+                {
+                    name: "English",
+                    tasks: []
+                },
+                {
+                    name: "Programing",
+                    tasks: []
+                },
+                {
+                    name: "Mathematics",
+                    tasks: []
+                }
+            ];
+            localStorage.setItem(
+                "subjects",
+                JSON.stringify(subjects)
+            );
+        }
+        /* ==================================================
+           3. NORMALISER LES DONNÉES
+           
+           Chaque matière doit toujours avoir un tableau
+           "tasks".
+           ================================================== */
+        subjects = subjects.map(function(subject) {
+            if (!Array.isArray(subject.tasks)) {
+                subject.tasks = [];
+            }
+            return subject;
+        });
+        /* Sauvegarder la structure correcte */
+        localStorage.setItem(
+            "subjects",
+            JSON.stringify(subjects)
+        );
+        /* ==================================================
+           4. RÉCUPÉRER LA ZONE DES MATIÈRES
+           ================================================== */
+        const subjectsContainer =
+            document.getElementById("subjectsContainer");
+        /* ==================================================
+           5. AFFICHER LES MATIÈRES
+           ================================================== */
+        function displaySubjects() {
+            /* Supprimer uniquement les anciennes cartes */
+            const oldCards =
+                subjectsContainer.querySelectorAll(
+                    ".subject-card:not(.add-subject)"
+                );
+            oldCards.forEach(function(card) {
+                card.remove();
+            });
+            /* Créer une carte pour chaque matière */
+            subjects.forEach(function(subject, subjectIndex) {
+                /* ================= CARTE ================= */
+                const card =
+                    document.createElement("div");
+                card.className =
+                    "subject-card";
+                /* ================= TITRE ================= */
+                const title =
+                    document.createElement("h2");
+                title.textContent =
+                    subject.name;
+                /* ================= TASKS ================= */
+                const tasks =
+                    document.createElement("p");
+                const totalTasks =
+                    Array.isArray(subject.tasks)
+                        ? subject.tasks.length
+                        : 0;
+                tasks.textContent =
+                    "Tasks: " + totalTasks;
+                /* ================= COMPLETED ================= */
+                const completed =
+                    document.createElement("p");
+                const completedTasks =
+                    Array.isArray(subject.tasks)
+                        ? subject.tasks.filter(
+                            function(task) {
+                                return task.completed === true;
+                            }
+                        ).length
+                        : 0;
+                completed.textContent =
+                    "Completed: " + completedTasks;
+                /* ================= PROGRESS ================= */
+                const progress =
+                    document.createElement("p");
+                let progressPercent = 0;
+                if (totalTasks > 0) {
+                    progressPercent =
+                        Math.round(
+                            (completedTasks / totalTasks) * 100
+                        );
+                }
+                progress.textContent =
+                    "Progress: "
+                    + progressPercent
+                    + "%";
+                /* ================= VIEW TASKS ================= */
+                const link =
+                    document.createElement("a");
+                link.href =
+                    "tasks.html";
+                link.className =
+                    "view-tasks";
+                link.textContent =
+                    "View Tasks";
+                /* ================= DELETE BUTTON ================= */
+                const deleteButton =
+                    document.createElement("button");
+                deleteButton.type =
+                    "button";
+                deleteButton.className =
+                    "delete-subject";
+                deleteButton.textContent =
+                    "Delete Subject";
+                /* ==================================================
+                   DELETE SUBJECT
+                   ================================================== */
+                deleteButton.addEventListener(
+                    "click",
+                    function() {
+                        const confirmation =
+                            confirm(
+                                "Are you sure you want to delete "
+                                + subject.name
+                                + "?"
+                            );
+                        if (!confirmation) {
+                            return;
+                        }
+                        /* Supprimer la matière */
+                        subjects.splice(
+                            subjectIndex,
+                            1
+                        );
+                        /* Sauvegarder immédiatement */
+                        localStorage.setItem(
+                            "subjects",
+                            JSON.stringify(subjects)
+                        );
+                        /* Réafficher */
+                        displaySubjects();
+                    }
+                );
+                /* ================= AJOUTER LES ÉLÉMENTS ================= */
+                card.appendChild(title);
+                card.appendChild(tasks);
+                card.appendChild(completed);
+                card.appendChild(progress);
+                card.appendChild(link);
+                card.appendChild(deleteButton);
+                /* ================= AJOUTER LA CARTE ================= */
+                subjectsContainer.insertBefore(
+                    card,
+                    document.querySelector(".add-subject")
+                );
+            });
+        }
+        /* ==================================================
+           6. AFFICHER AU CHARGEMENT
+           ================================================== */
+        displaySubjects();
+        /* ==================================================
+           7. FORMULAIRE
+           ================================================== */
+        const subjectForm =
+            document.getElementById("subjectForm");
+        /* ==================================================
+           8. AJOUTER UNE MATIÈRE
+           ================================================== */
+        subjectForm.addEventListener(
+            "submit",
+            function(event) {
+                /* Empêcher le rechargement */
+                event.preventDefault();
+                /* Récupérer le champ */
+                const subjectInput =
+                    document.getElementById("subject");
+                const subjectName =
+                    subjectInput.value.trim();
+                /* Vérifier si vide */
+                if (subjectName === "") {
+                    alert(
+                        "Please enter a subject name."
+                    );
+                    return;
+                }
+                /* ==================================================
+                   VÉRIFIER SI LA MATIÈRE EXISTE DÉJÀ
+                   ================================================== */
+                const alreadyExists =
+                    subjects.some(
+                        function(subject) {
+                            return subject.name.toLowerCase()
+                                === subjectName.toLowerCase();
+                        }
+                    );
+                if (alreadyExists) {
+                    alert(
+                        "This subject already exists."
+                    );
+                    return;
+                }
+                /* ================= NOUVELLE MATIÈRE ================= */
+                const newSubject = {
+                    name: subjectName,
+                    tasks: []
+                };
+                /* Ajouter */
+                subjects.push(newSubject);
+                /* Sauvegarder */
+                localStorage.setItem(
+                    "subjects",
+                    JSON.stringify(subjects)
+                );
+                /* Réafficher */
+                displaySubjects();
+                /* Vider le champ */
+                subjectInput.value = "";
+            }
+        );
+    </script>
+</body>
+</html>

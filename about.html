@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>About</title>
+
+
+    <style>
+
+
+        /* ================= GENERAL ================= */
+
+        body {
+
+            margin: 0;
+            padding: 0;
+
+            background-color: #f3ead8;
+
+            color: #17233c;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            text-align: center;
+
+        }
+
+
+        /* ================= MENU ================= */
+
+        ul {
+
+            list-style: none;
+
+            margin: 0;
+            padding: 20px;
+
+            background-color: #101b35;
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 35px;
+
+        }
+
+
+        ul li a {
+
+            color: #f3ead8;
+
+            text-decoration: none;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+        }
+
+
+        ul li a:hover {
+
+            color: #d8b979;
+
+        }
+
+
+        /* ================= TITRE PRINCIPAL ================= */
+
+        h1 {
+
+            color: #f3ead8;
+
+            border: 3px solid #101b35;
+
+            border-radius: 20px;
+
+            padding: 30px 60px;
+
+            display: block;
+
+            background-color: #101b35;
+
+            margin: 20px auto 45px;
+
+            width: fit-content;
+
+            font-size: 45px;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            text-align: center;
+
+            box-shadow: 0 5px 12px rgba(16, 27, 53, 0.20);
+
+        }
+
+
+        /* ================= ABOUT CONTENT ================= */
+
+        .about-content {
+
+            max-width: 850px;
+
+            margin: 0 auto;
+
+            padding: 0 30px;
+
+            text-align: left;
+
+        }
+
+
+        /* ================= TITRES ================= */
+
+        .about-content h2 {
+
+            color: #101b35;
+
+            font-size: 25px;
+
+            margin-top: 30px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        /* ================= TEXTES ================= */
+
+        .about-content p {
+
+            color: #3d4658;
+
+            font-size: 17px;
+
+            line-height: 1.6;
+
+            margin-top: 0;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        /* ================= LIENS ================= */
+
+        .about-content ul {
+
+            background-color: transparent;
+
+            display: block;
+
+            padding: 0;
+
+            margin: 0 0 35px 0;
+
+            text-align: left;
+
+        }
+
+
+        .about-content ul li {
+
+            margin-bottom: 12px;
+
+            list-style: none;
+
+        }
+
+
+        .about-content ul li a {
+
+            color: #a87d28;
+
+            text-decoration: underline;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+        }
+
+
+        .about-content ul li a:hover {
+
+            color: #101b35;
+
+        }
+
+
+        /* ================= CREATOR ================= */
+
+        .creator {
+
+            margin: 20px 0 50px 30px;
+
+            padding: 15px 25px;
+
+            background-color: #f8dea5;
+
+            color: #101b35;
+
+            border: 2px solid #a87d28;
+
+            border-radius: 15px;
+
+            font-size: 16px;
+
+        }
+
+
+        /* ================= CREATOR POSITION ================= */
+
+        .creator-section {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+        }
+
+
+        .creator {
+
+            margin-left: auto;
+
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 700px) {
+
+            ul {
+
+                flex-direction: column;
+
+                gap: 15px;
+
+            }
+
+
+            .about-content {
+
+                width: 80%;
+
+                padding: 0;
+
+            }
+
+
+            h1 {
+
+                font-size: 40px;
+
+                padding: 30px 40px;
+
+            }
+
+
+            .creator-section {
+
+                justify-content: center;
+
+            }
+
+
+            .creator {
+
+                margin: 10px 0 40px;
+
+            }
+
+        }
+
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= MENU ================= -->
+
+    <ul>
+
+        <li>
+            <a href="index.html">Home</a>
+        </li>
+
+        <li>
+            <a href="Subjects.html">Subjects</a>
+        </li>
+
+        <li>
+            <a href="tasks.html">Tasks</a>
+        </li>
+
+        <li>
+            <a href="progress.html">Progress</a>
+        </li>
+
+        <li>
+            <a href="about.html">About</a>
+        </li>
+
+    </ul>
+
+
+    <!-- ================= TITRE ================= -->
+
+    <h1>
+        About StudyTRACK
+    </h1>
+
+
+    <!-- ================= ABOUT CONTENT ================= -->
+
+    <div class="about-content">
+
+
+        <!-- ================= WHY ================= -->
+
+        <h2>
+            Why was StudyTRACK created?
+        </h2>
+
+        <p>
+            Many students have difficulty organizing their
+            study tasks and keeping track of their progress.
+            <br>
+            StudyTRACK was created to provide a simple way
+            to organize studying.
+        </p>
+
+
+        <!-- ================= GOAL ================= -->
+
+        <h2>
+            Our Goal
+        </h2>
+
+        <p>
+            The goal of StudyTRACK is to make study planning
+            simple, clear and easy to manage.
+        </p>
+
+
+        <!-- ================= WHAT STUDENTS CAN DO ================= -->
+
+        <h2>
+            What can students do with StudyTRACK?
+        </h2>
+
+
+        <ul>
+
+            <li>
+                <a href="Subjects.html">
+                    Organize their Subjects
+                </a>
+            </li>
+
+            <li>
+                <a href="tasks.html">
+                    Manage their study Tasks
+                </a>
+            </li>
+
+            <li>
+                <a href="progress.html">
+                    Follow their Progress
+                </a>
+            </li>
+
+        </ul>
+
+
+    </div>
+
+
+    <!-- ================= CREATOR ================= -->
+
+    <div class="creator-section">
+
+        <p class="creator">
+
+            <b>
+                CREATED BY MOHAMMEDI MAISAA
+            </b>
+
+        </p>
+
+    </div>
+
+
+</body>
+
+</html>

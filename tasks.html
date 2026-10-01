@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+    <style>
+        /* ================= GENERAL ================= */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f3ead8;
+            color: #17233c;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        /* ================= MENU ================= */
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 20px;
+            background-color: #101b35;
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+        }
+        ul li a {
+            color: #f3ead8;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: bold;
+        }
+        ul li a:hover {
+            color: #d8b979;
+        }
+        /* ================= TITRE PRINCIPAL ================= */
+        h1 {
+            color: #f3ead8;
+            border: 3px solid #101b35;
+            border-radius: 20px;
+            padding: 30px 60px;
+            display: block;
+            background-color: #101b35;
+            margin: 20px auto;
+            width: fit-content;
+            font-size: 45px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            box-shadow: 0 5px 12px rgba(16, 27, 53, 0.20);
+        }
+        /* ================= PHRASE ================= */
+        h1 + p {
+            text-align: center;
+            font-size: 20px;
+            color: #101b35;
+            margin-top: 25px;
+            margin-bottom: 35px;
+        }
+        /* ================= TASKS CONTAINER ================= */
+        .tasks {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 25px;
+            flex-wrap: wrap;
+            max-width: 1100px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+        }
+        /* ================= TASK CARD ================= */
+        .task-card {
+            width: 260px;
+            min-height: 300px;
+            padding: 25px 20px;
+            background-color: white;
+            border: 3px solid #101b35;
+            border-radius: 20px;
+            box-shadow: 0 5px 12px rgba(16, 27, 53, 0.20);
+            box-sizing: border-box;
+        }
+        /* ================= SUBJECT TITLE ================= */
+        .task-card h2 {
+            margin: 0 0 20px 0;
+            padding: 15px 10px;
+            background-color: #101b35;
+            color: #f3ead8;
+            border-radius: 15px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        /* ================= TASK LIST ================= */
+        .task-card ul {
+            display: block;
+            background-color: transparent;
+            margin: 0;
+            padding: 0;
+            text-align: left;
+        }
+        /* ================= TASK ================= */
+        .task-card li {
+            list-style: none;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #f8dea5;
+            color: #3d4658;
+            border-radius: 10px;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+        /* ================= CHECKBOX ================= */
+        .task-card input[type="checkbox"] {
+            margin-right: 8px;
+            accent-color: #101b35;
+            cursor: pointer;
+        }
+        /* ================= ADD TASK BUTTON ================= */
+        .add-task {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #f8dea5;
+            color: #101b35;
+            border: 2px solid #a87d28;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .add-task:hover {
+            background-color: #a77655;
+            color: #101b35;
+            transform: translateY(-2px);
+        }
+        /* ================= DELETE TASK BUTTON ================= */
+        .delete-task {
+            float: right;
+            padding: 4px 8px;
+            background-color: white;
+            color: #a87d28;
+            border: 1px solid #a87d28;
+            border-radius: 8px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .delete-task:hover {
+            background-color: #a87d28;
+            color: white;
+        }
+        /* ================= NO TASKS ================= */
+        .no-tasks {
+            color: #3d4658;
+            font-size: 16px;
+            margin: 30px 0;
+        }
+        /* ================= MOBILE ================= */
+        @media (max-width: 700px) {
+            ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .tasks {
+                flex-direction: column;
+                align-items: center;
+            }
+            .task-card {
+                width: 80%;
+                max-width: 400px;
+            }
+            h1 {
+                font-size: 40px;
+                padding: 30px 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ================= MENU ================= -->
+    <ul>
+        <li>
+            <a href="index.html">Home</a>
+        </li>
+        <li>
+            <a href="Subjects.html">Subjects</a>
+        </li>
+        <li>
+            <a href="tasks.html">Tasks</a>
+        </li>
+        <li>
+            <a href="progress.html">Progress</a>
+        </li>
+        <li>
+            <a href="about.html">About</a>
+        </li>
+    </ul>
+    <!-- ================= TITRE ================= -->
+    <h1>
+        My Tasks
+    </h1>
+    <!-- ================= DESCRIPTION ================= -->
+    <p>
+        Manage your tasks by subject.
+    </p>
+    <!-- ================= TASK CARDS ================= -->
+    <div class="tasks" id="tasksContainer">
+    </div>
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
+        /* ==================================================
+           1. DONNÉES DE DÉMONSTRATION
+           
+           Ces données apparaissent uniquement lors de la
+           première utilisation de l'application.
+           ================================================== */
+        const defaultSubjects = [
+            {
+                name: "German",
+                tasks: [
+                    { text: "Learn 20 new vocabulary words", completed: true },
+                    { text: "Practice German pronunciation", completed: true },
+                    { text: "Write a short text about myself", completed: true },
+                    { text: "Practice B1 speaking", completed: false },
+                    { text: "Listen to a German video for 20 minutes", completed: false }
+                ]
+            },
+            {
+                name: "English",
+                tasks: [
+                    { text: "Learn 15 new vocabulary words", completed: true },
+                    { text: "Watch a video in English", completed: true },
+                    { text: "Write a short paragraph", completed: false },
+                    { text: "Practice speaking for 15 minutes", completed: false }
+                ]
+            },
+            {
+                name: "Programming",
+                tasks: [
+                    { text: "Learn HTML basics", completed: true },
+                    { text: "Create a simple webpage", completed: true },
+                    { text: "Learn CSS selectors", completed: true },
+                    { text: "Practice JavaScript variables", completed: false },
+                    { text: "Create a small JavaScript function", completed: false }
+                ]
+            },
+            {
+                name: "Mathematics",
+                tasks: [
+                    { text: "Review algebra formulas", completed: true },
+                    { text: "Solve 10 equations", completed: true },
+                    { text: "Practice functions", completed: false },
+                    { text: "Review probability", completed: false }
+                ]
+            }
+        ];
+
+        /* ==================================================
+           2. RÉCUPÉRER LES DONNÉES
+           ================================================== */
+        let subjects = null;
+        const savedSubjects =
+            localStorage.getItem("subjects");
+        /* ==================================================
+           3. CHARGER LES DONNÉES EXISTANTES
+           ================================================== */
+        if (savedSubjects !== null) {
+            try {
+                const parsedSubjects =
+                    JSON.parse(savedSubjects);
+                if (Array.isArray(parsedSubjects)) {
+                    subjects = parsedSubjects;
+                }
+            } catch (error) {
+                console.log(
+                    "Error reading saved subjects.",
+                    error
+                );
+            }
+        }
+        /* ==================================================
+           4. PREMIÈRE UTILISATION
+           
+           Si aucune donnée n'existe dans le navigateur,
+           créer les données de démonstration.
+           ================================================== */
+        if (
+            subjects === null ||
+            subjects.length === 0
+        ) {
+            subjects =
+                JSON.parse(
+                    JSON.stringify(defaultSubjects)
+                );
+            localStorage.setItem(
+                "subjects",
+                JSON.stringify(subjects)
+            );
+        }
+        /* ==================================================
+           5. NORMALISER LES DONNÉES
+           ================================================== */
+        subjects = subjects.map(
+            function(subject) {
+                /* Si tasks n'existe pas */
+                if (!Array.isArray(subject.tasks)) {
+                    subject.tasks = [];
+                }
+                /* Vérifier chaque tâche */
+                subject.tasks =
+                    subject.tasks.map(
+                        function(task) {
+                            return {
+                                text:
+                                    task.text || "",
+                                completed:
+                                    task.completed === true
+                            };
+                        }
+                    );
+                return subject;
+            }
+        );
+        /* Sauvegarder la structure correcte */
+        localStorage.setItem(
+            "subjects",
+            JSON.stringify(subjects)
+        );
+        /* ==================================================
+           6. RÉCUPÉRER LE CONTENEUR
+           ================================================== */
+        const tasksContainer =
+            document.getElementById(
+                "tasksContainer"
+            );
+        /* ==================================================
+           7. SAUVEGARDER
+           ================================================== */
+        function saveSubjects() {
+            localStorage.setItem(
+                "subjects",
+                JSON.stringify(subjects)
+            );
+        }
+        /* ==================================================
+           8. AFFICHER LES TÂCHES
+           ================================================== */
+        function displayTasks() {
+            /* Vider le conteneur */
+            tasksContainer.innerHTML = "";
+            /* Parcourir les matières */
+            subjects.forEach(
+                function(subject, subjectIndex) {
+                    /* ================= CARTE ================= */
+                    const card =
+                        document.createElement("section");
+                    card.className =
+                        "task-card";
+                    /* ================= TITRE ================= */
+                    const title =
+                        document.createElement("h2");
+                    title.textContent =
+                        subject.name;
+                    card.appendChild(title);
+                    /* ================= LISTE ================= */
+                    const taskList =
+                        document.createElement("ul");
+                    /* ================= AUCUNE TÂCHE ================= */
+                    if (
+                        subject.tasks.length === 0
+                    ) {
+                        const noTasks =
+                            document.createElement("p");
+                        noTasks.className =
+                            "no-tasks";
+                        noTasks.textContent =
+                            "No tasks yet";
+                        card.appendChild(
+                            noTasks
+                        );
+                    }
+                    /* ================= TÂCHES ================= */
+                    subject.tasks.forEach(
+                        function(task, taskIndex) {
+                            /* Tâche */
+                            const taskItem =
+                                document.createElement("li");
+                            /* Checkbox */
+                            const checkbox =
+                                document.createElement("input");
+                            checkbox.type =
+                                "checkbox";
+                            checkbox.checked =
+                                task.completed;
+                            /* ================= CHECKBOX ================= */
+                            checkbox.addEventListener(
+                                "change",
+                                function() {
+                                    task.completed =
+                                        checkbox.checked;
+                                    saveSubjects();
+                                }
+                            );
+                            /* Texte */
+                            const taskText =
+                                document.createTextNode(
+                                    task.text
+                                );
+                            /* ================= DELETE ================= */
+                            const deleteButton =
+                                document.createElement(
+                                    "button"
+                                );
+                            deleteButton.type =
+                                "button";
+                            deleteButton.className =
+                                "delete-task";
+                            deleteButton.textContent =
+                                "Delete";
+                            deleteButton.addEventListener(
+                                "click",
+                                function() {
+                                    const confirmation =
+                                        confirm(
+                                            "Delete this task?"
+                                        );
+                                    if (
+                                        !confirmation
+                                    ) {
+                                        return;
+                                    }
+                                    /* Supprimer */
+                                    subject.tasks.splice(
+                                        taskIndex,
+                                        1
+                                    );
+                                    /* Sauvegarder */
+                                    saveSubjects();
+                                    /* Réafficher */
+                                    displayTasks();
+                                }
+                            );
+                            /* ================= AJOUTER ================= */
+                            taskItem.appendChild(
+                                checkbox
+                            );
+                            taskItem.appendChild(
+                                taskText
+                            );
+                            taskItem.appendChild(
+                                deleteButton
+                            );
+                            taskList.appendChild(
+                                taskItem
+                            );
+                        }
+                    );
+                    /* Ajouter la liste */
+                    card.appendChild(
+                        taskList
+                    );
+                    /* ==================================================
+                       ADD TASK
+                       ================================================== */
+                    const addButton =
+                        document.createElement(
+                            "button"
+                        );
+                    addButton.type =
+                        "button";
+                    addButton.className =
+                        "add-task";
+                    addButton.textContent =
+                        "+ Add Task";
+                    addButton.addEventListener(
+                        "click",
+                        function() {
+                            const taskName =
+                                prompt(
+                                    "Enter a task:"
+                                );
+                            if (
+                                taskName === null ||
+                                taskName.trim() === ""
+                            ) {
+                                return;
+                            }
+                            /* Nouvelle tâche */
+                            const newTask = {
+                                text:
+                                    taskName.trim(),
+                                completed:
+                                    false
+                            };
+                            /* Ajouter */
+                            subject.tasks.push(
+                                newTask
+                            );
+                            /* Sauvegarder */
+                            saveSubjects();
+                            /* Réafficher */
+                            displayTasks();
+                        }
+                    );
+                    /* Ajouter le bouton */
+                    card.appendChild(
+                        addButton
+                    );
+                    /* Ajouter la carte */
+                    tasksContainer.appendChild(
+                        card
+                    );
+                }
+            );
+        }
+        /* ==================================================
+           9. AFFICHER AU CHARGEMENT
+           ================================================== */
+        displayTasks();
+    </script>
+</body>
+</html>
